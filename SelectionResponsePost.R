@@ -2,17 +2,17 @@ library(plyr)
 
 species <- 'Sim'
 if (species == 'Sim') {
-  par_dir <- 'z:/SelectionSimulans2018/'
+  par_dir <- '/mnt/topaz/phenotypic_selection/SelectionSimulans2018/'
 } else {
-  par_dir <- 'z:/SelectionMelanogaster2018/'
+  par_dir <- '/mnt/topaz/phenotypic_selection/SelectionMelanogaster2018/'
 }
 
 gen_h <- 'Generation_'
 
 #### Number of generations into the experiment
-gen_num <- 19
+gen_num <- 15
 #### Vector of post selection generations
-postselection_generations <- c("15", "16", "17", "18", "19")
+postselection_generations <- c("15")
 
 ##########################################################
 # Combines Data From All Master Files, Removes flies with Wing NAs, Leg NAs, and Bad Outlier Legs
@@ -78,13 +78,6 @@ make_data <- function(number_of_generations) {
 dat <- make_data(gen_num)
 ###########################################################
 ###########################################################
-
-# write out the full data
-write.csv(dat, file='z:/SelectionSimulans2018/Simulans2018Master.csv', row.names=FALSE)
-
-
-write.csv(s_df, file='z:/SelectionSimulans2018/Simulans2018ResponseData.csv', row.names=FALSE)
-
 
 #Currently out of place wing data creation
 # 
@@ -234,7 +227,7 @@ organize_dat <- function(g0smeans, gen_s_means, gen_post_means, g0svar, gen_s_va
   sel_dat$rep    <- gsub('[[:digit:]]+','', sel_dat$generation)
   sel_dat$gennum <- gsub('[[:alpha:]]+','', sel_dat$generation)
   # Order data by generation, number of generations, and then reset the rownames
-  sel_dat <- sel_dat[order(as.numeric(sel_dat$gennum), sel_dat$rep, sel_dat$treatment), ]
+  sel_dat <- sel_dat[order(sel_dat$generation), ]
   rownames(sel_dat) <- NULL
   # Add variance and population size combine variance data first
   vdat <- rbind(g0svar,gen_s_var, gen_post_var)
@@ -246,7 +239,6 @@ organize_dat <- function(g0smeans, gen_s_means, gen_post_means, g0svar, gen_s_va
   sel_dat$Ns  <- vdat$Ns
   return(sel_dat)
 }
-
 
 s_dat <- organize_dat(gen0means, genSmeans, genPmeans, gen0varN, genSvarN, genPvarN)
 head(s_dat)
