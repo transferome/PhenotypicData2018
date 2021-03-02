@@ -16,7 +16,7 @@ plt.rcParams.update({
     "axes.facecolor": "white",
     "axes.edgecolor": "dimgray",
     "axes.labelcolor": "white",
-    "legend.fontsize": 18,
+    "legend.fontsize": 15,
     "xtick.color": "white",
     "ytick.color": "white",
     "grid.color": "black",
@@ -26,7 +26,7 @@ plt.rcParams.update({
     "savefig.edgecolor": "black"})
 
 
-fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(15, 10))
+fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(10, 10))
 ax.set_title('Drosophila simulans', fontsize='24', style='italic')
 for key in repA.keys():
     if key != 'control':
@@ -50,6 +50,17 @@ for key in repA.keys():
                     color='royalblue', linewidth=4.0)
             ax.errorbar(sub.get_gens(repB[key]), sub.get_resp(repB[key]), yerr=sub.make_error(repB[key], specie),
                         color='royalblue', alpha=0.4, linewidth=4.0)
+    # if key == 'control':
+    #     ax.scatter(sub.get_gens(repA[key]), sub.get_resp(repA[key]), marker=',', color='dimgray')
+    #     ax.plot(sub.get_gens(repA[key]), sub.get_resp(repA[key]), color='dimgray', linewidth=4.0)
+    #     ax.errorbar(sub.get_gens(repA[key]), sub.get_resp(repA[key]), yerr=sub.make_error(repA[key], specie),
+    #                 color='dimgray', linewidth=4.0)
+    #     ax.scatter(sub.get_gens(repB[key]), sub.get_resp(repB[key]), alpha=0.4, marker='o', color='grey')
+    #     ax.plot(sub.get_gens(repB[key]), sub.get_resp(repB[key]), alpha=0.4, linestyle=(0, (5, 1)),
+    #             color='grey', linewidth=4.0)
+    #     ax.errorbar(sub.get_gens(repB[key]), sub.get_resp(repB[key]), yerr=sub.make_error(repB[key], specie),
+    #                 color='grey', alpha=0.4, linewidth=4.0)
+
 custom_lines = [Line2D([0], [0], color='orangered', lw=4, label='Up A'),
                 Line2D([0], [0], color='orangered', lw=4, alpha=0.4, label='Up B'),
                 Line2D([0], [0], color='royalblue', lw=4, label='Down A'),

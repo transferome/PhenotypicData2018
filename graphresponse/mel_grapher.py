@@ -18,7 +18,7 @@ plt.rcParams.update({
     "axes.facecolor": "white",
     "axes.edgecolor": "dimgray",
     "axes.labelcolor": "white",
-    "legend.fontsize": 18,
+    "legend.fontsize": 15,
     "xtick.color": "white",
     "ytick.color": "white",
     "grid.color": "black",
@@ -28,7 +28,7 @@ plt.rcParams.update({
     "savefig.edgecolor": "black"})
 
 
-fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(15, 10))
+fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(10, 10))
 ax.set_title('Drosophila melanogaster', fontsize='24', style='italic')
 for key in repA.keys():
     if key != 'control':
